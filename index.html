@@ -105,12 +105,15 @@
     padding:22px 0;
     transition:background .5s var(--ease),padding .5s var(--ease),box-shadow .5s var(--ease);
   }
-  header.solid{
+  header::before{
+    content:"";position:absolute;inset:0;z-index:-1;
     background:rgba(241,237,228,.93);
-    backdrop-filter:blur(12px);
-    padding:14px 0;
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
     box-shadow:0 1px 0 var(--line);
+    opacity:0;transition:opacity .5s var(--ease);
   }
+  header.solid::before{opacity:1}
+  header.solid{padding:14px 0}
   .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
   .brand{
     display:inline-flex;align-items:center;gap:.44em;
@@ -147,7 +150,7 @@
   @keyframes kb{to{transform:scale(1)}}
   .hero-bg::after{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(20,20,17,.5) 0%,rgba(20,20,17,.12) 32%,rgba(20,20,17,.2) 60%,rgba(20,20,17,.82) 100%);
+    background:linear-gradient(180deg,rgba(20,20,17,.58) 0%,rgba(20,20,17,.24) 28%,rgba(20,20,17,.46) 58%,rgba(20,20,17,.93) 100%),linear-gradient(90deg,rgba(20,20,17,.62) 0%,rgba(20,20,17,.2) 48%,rgba(20,20,17,0) 76%);
   }
   .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:clamp(48px,7vw,88px);padding-top:140px}
   .hero h1{
@@ -157,12 +160,14 @@
     line-height:.98;letter-spacing:-.04em;
     max-width:15ch;
     text-wrap:balance;
+    text-shadow:0 1px 28px rgba(20,20,17,.6),0 1px 3px rgba(20,20,17,.4);
   }
   .hero h1 em{font-style:italic;color:#efe7d4}
   .hero-sub{
-    color:rgba(241,237,228,.86);
+    color:rgba(241,237,228,.94);
     font-size:clamp(1.05rem,1.5vw,1.3rem);
     max-width:42ch;margin-top:26px;line-height:1.55;
+    text-shadow:0 1px 18px rgba(20,20,17,.55);
   }
   .hero-cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
   .hero-placard{
@@ -339,6 +344,10 @@
   .form{background:var(--paper);padding:clamp(28px,3vw,40px);border-radius:3px;box-shadow:var(--shadow)}
   .form h3{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin-bottom:6px}
   .form .fsub{font-size:.9rem;color:var(--ink-soft);margin-bottom:24px}
+  .form-thanks{padding:8px 0}
+  .form-thanks h3{font-family:var(--serif);font-weight:600;font-size:1.55rem;margin-bottom:10px}
+  .form-thanks p{color:var(--ink-soft);font-size:.98rem;line-height:1.6}
+  .form-thanks a{color:var(--sage-deep);font-weight:600;text-decoration:underline;text-underline-offset:3px}
   .field{margin-bottom:16px}
   .field label{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);margin-bottom:7px}
   .field input,.field textarea,.field select{
@@ -411,7 +420,7 @@
       <a class="lnk" href="#services">Services</a>
       <a class="lnk" href="#rates">Rates</a>
       <a class="lnk" href="#proof">Reviews</a>
-      <a class="btn btn-ghost nav-cta" href="#book">Book a call</a>
+      <a class="btn btn-ghost nav-cta" href="https://calendar.app.google/ZufBLptBZeXX9u197" target="_blank" rel="noopener">Book a call</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
@@ -424,7 +433,7 @@
     <h1 class="hero-reveal d1">Your Airbnb<br>in <em>steady hands</em></h1>
     <p class="hero-sub hero-reveal d2">Full-service vacation rental management and cleaning, run by native Idahoans who treat your place like our own. You get the income. We handle everything else.</p>
     <div class="hero-cta hero-reveal d3">
-      <a href="#book" class="btn btn-primary btn-lg">Book a call <span class="arr">→</span></a>
+      <a href="https://calendar.app.google/ZufBLptBZeXX9u197" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Book a call <span class="arr">→</span></a>
       <a href="#rates" class="btn btn-ghost btn-lg">View rates</a>
     </div>
   </div>
@@ -570,7 +579,7 @@
           <li>Prompt maintenance dispatch</li>
           <li>On-the-ground guest support</li>
         </ul>
-        <a href="#book" class="btn btn-ink">Book a call <span class="arr">→</span></a>
+        <a href="https://calendar.app.google/ZufBLptBZeXX9u197" target="_blank" rel="noopener" class="btn btn-ink">Book a call <span class="arr">→</span></a>
       </div>
       <!-- Tier 3: Premium Luxury -->
       <div class="tier reveal s2">
@@ -616,8 +625,7 @@
       <h2 class="display">Tell us about<br>your <em>place.</em></h2>
       <p>Book a free 20-minute call. We'll talk through your home, your goals, and exactly what we'd do to fill the calendar and keep it five-star — no pressure, no jargon.</p>
       <div class="book-meta">
-        <a href="tel:+12085550142"><span class="k">Call</span> (208) 555-0142</a>
-        <a href="mailto:hello@boisebnbcare.com"><span class="k">Email</span> hello@boisebnbcare.com</a>
+        <a href="tel:+12083403447"><span class="k">Call</span> 208-340-3447</a>
         <span><span class="k">Area</span> Boise · Meridian · Eagle · Nampa · Caldwell</span>
       </div>
     </div>
@@ -630,9 +638,9 @@
         <div class="field"><label for="ad">Property address or area</label><input id="ad" name="address" type="text" placeholder="North End, Boise"></div>
         <div class="field"><label for="pl">I'm interested in</label>
           <select id="pl" name="plan">
-            <option>Full Management (Hands-Off)</option>
-            <option>Care &amp; Maintenance (Upkeep)</option>
-            <option>Turnover &amp; Cleaning (Reset)</option>
+            <option>Full-Service Turnkey</option>
+            <option>Digital Service</option>
+            <option>Premium Luxury</option>
             <option>Not sure yet — help me choose</option>
           </select>
         </div>
@@ -657,13 +665,12 @@
         <a href="#services">Services</a>
         <a href="#rates">Rates</a>
         <a href="#proof">Reviews</a>
-        <a href="#book">Book a call</a>
+        <a href="https://calendar.app.google/ZufBLptBZeXX9u197" target="_blank" rel="noopener">Book a call</a>
       </div>
       <div class="foot-col">
         <h4>Get in touch</h4>
-        <a href="tel:+12085550142">(208) 555-0142</a>
-        <a href="mailto:hello@boisebnbcare.com">hello@boisebnbcare.com</a>
-        <a href="#book">Free walkthrough call</a>
+        <a href="tel:+12083403447">208-340-3447</a>
+        <a href="https://calendar.app.google/ZufBLptBZeXX9u197" target="_blank" rel="noopener">Free walkthrough call</a>
         <a href="#">Instagram</a>
         <a href="#">Facebook</a>
       </div>
@@ -751,15 +758,14 @@
   // ---- year ----
   document.getElementById('yr').textContent=new Date().getFullYear();
 
-  // ---- form (placeholder → mailto) ----
+  // ---- form (inline confirmation; no email yet) ----
   document.getElementById('bookForm').addEventListener('submit',function(ev){
     ev.preventDefault();
-    var f=ev.target;
-    var body=encodeURIComponent(
-      "Name: "+f.name.value+"\nEmail: "+f.email.value+"\nProperty: "+f.address.value+
-      "\nInterested in: "+f.plan.value+"\n\n"+f.message.value
-    );
-    window.location.href="mailto:hello@boisebnbcare.com?subject="+encodeURIComponent("Book a call — "+(f.name.value||"New inquiry"))+"&body="+body;
+    var f=ev.currentTarget;
+    var nm=document.getElementById('nm');
+    var first=(nm&&nm.value)?nm.value.trim().split(/\s+/)[0]:'';
+    f.innerHTML='<div class="form-thanks"><h3>Thanks'+(first?(', '+first):'')+'!</h3>'+
+      '<p>We\'ve got your details. Want to lock in a time now? <a href="https://calendar.app.google/ZufBLptBZeXX9u197" target="_blank" rel="noopener">Book a call</a> — or reach us at <a href="tel:+12083403447">208-340-3447</a>.</p></div>';
   });
 </script>
 </body>
